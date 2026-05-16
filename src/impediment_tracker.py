@@ -1,14 +1,15 @@
 """
 CLI to log team blockers during a sprint.
-Usage examples at the bottom of the file.
+Pick a case study with --case (default is the student team).
 """
 
 import argparse
 from datetime import date
 
+from case_cli import add_case_argument, file_key
 from storage import load_json, save_json
 
-FILE = "impediments.json"
+FILE = file_key("impediments")
 
 
 def next_id(items):
@@ -18,7 +19,7 @@ def next_id(items):
 
 
 def cmd_add(args):
-    data = load_json(FILE, default={"items": []})
+    data = load_json(FILE, default={"items": []}, case_id=args.case)
     items = data.get("items", [])
     entry = {
         "id": next_id(items),
@@ -31,17 +32,17 @@ def cmd_add(args):
     }
     items.append(entry)
     data["items"] = items
-    save_json(FILE, data)
-    print(f"logged impediment #{entry['id']}: {entry['title']}")
+    save_json(FILE, data, case_id=args.case)
+    print(f"[{args.case}] logged impediment #{entry['id']}: {entry['title']}")
 
 
 def cmd_list(args):
-    data = load_json(FILE, default={"items": []})
+    data = load_json(FILE, default={"items": []}, case_id=args.case)
     items = data.get("items", [])
     if args.status:
         items = [i for i in items if i.get("status") == args.status]
     if not items:
-        print("no impediments in the list")
+        print(f"[{args.case}] no impediments in the list")
         return
     for row in items:
         mark = "open" if row.get("status") == "open" else "done"
@@ -54,7 +55,7 @@ def cmd_list(args):
 
 
 def cmd_resolve(args):
-    data = load_json(FILE, default={"items": []})
+    data = load_json(FILE, default={"items": []}, case_id=args.case)
     items = data.get("items", [])
     found = False
     for row in items:
@@ -68,12 +69,13 @@ def cmd_resolve(args):
     if not found:
         print(f"no impediment with id {args.id}")
         return
-    save_json(FILE, data)
-    print(f"marked #{args.id} as resolved")
+    save_json(FILE, data, case_id=args.case)
+    print(f"[{args.case}] marked #{args.id} as resolved")
 
 
 def build_parser():
     parser = argparse.ArgumentParser(description="track sprint blockers")
+    add_case_argument(parser)
     sub = parser.add_subparsers(dest="command", required=True)
 
     add_p = sub.add_parser("add", help="create a new impediment")
@@ -96,7 +98,6 @@ def build_parser():
 
 
 if __name__ == "__main__":
-    # run from repo root: python src/impediment_tracker.py list
     p = build_parser()
     args = p.parse_args()
     args.func(args)
