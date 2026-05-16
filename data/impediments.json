@@ -1,0 +1,35 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "title": "CI pipeline red for two days, nobody owned the fix",
+      "impact": "high",
+      "owner": "devops volunteer",
+      "status": "resolved",
+      "opened": "2026-02-03",
+      "resolved": "2026-02-05",
+      "notes": "came up in daily, we assigned one person instead of discussing in the group chat",
+      "resolution_note": "broken test fixture updated, pipeline green again"
+    },
+    {
+      "id": 2,
+      "title": "Acceptance criteria missing on three backlog items",
+      "impact": "medium",
+      "owner": "product owner",
+      "status": "resolved",
+      "opened": "2026-02-10",
+      "resolved": "2026-02-11",
+      "notes": "planning ran long because stories were vague",
+      "resolution_note": "refinement slot added mid week"
+    },
+    {
+      "id": 3,
+      "title": "Reviewer unavailable before demo",
+      "impact": "medium",
+      "owner": "scrum facilitator",
+      "status": "open",
+      "opened": "2026-02-17",
+      "notes": "PR sat idle for 4 days"
+    }
+  ]
+}
