@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Process Improvement Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="top">
+      <p class="eyebrow">CV project · team process</p>
+      <h1>Process improvement dashboard</h1>
+      <p class="lede">Pick one of four case studies. Metrics, sprints, blockers and retros update instantly.</p>
+      <div class="case-tabs" id="caseTabs" role="tablist" aria-label="Case studies"></div>
+    </header>
+
+    <main id="main" class="main hidden">
+      <section class="hero card">
+        <span class="badge" id="caseTag"></span>
+        <h2 id="caseTitle"></h2>
+        <p class="subtitle" id="caseSubtitle"></p>
+        <p class="context" id="caseContext"></p>
+        <p class="source" id="caseSource"></p>
+      </section>
+
+      <section class="grid-2">
+        <article class="card summary before">
+          <h3>Before</h3>
+          <p id="beforeSummary"></p>
+        </article>
+        <article class="card summary after">
+          <h3>After</h3>
+          <p id="afterSummary"></p>
+        </article>
+      </section>
+
+      <section class="card">
+        <h3>Headline KPIs</h3>
+        <div class="kpi-grid" id="kpiGrid"></div>
+      </section>
+
+      <section class="card">
+        <h3>Sprint delivery</h3>
+        <p class="hint">Planned vs done story points per iteration.</p>
+        <div class="chart" id="sprintChart"></div>
+        <div class="sprint-table" id="sprintTable"></div>
+      </section>
+
+      <section class="grid-2">
+        <article class="card">
+          <h3>Impediments</h3>
+          <ul class="imp-list" id="impedimentList"></ul>
+        </article>
+        <article class="card">
+          <h3>Retrospectives</h3>
+          <div id="retroList"></div>
+        </article>
+      </section>
+
+      <section class="card">
+        <h3>Changes introduced</h3>
+        <ul class="change-list" id="changeList"></ul>
+      </section>
+    </main>
+
+    <p id="loadError" class="error hidden">Could not load case data. Run python src/run_dashboard.py from the repo root.</p>
+  </div>
+  <script src="js/app.js"></script>
+</body>
+</html>
