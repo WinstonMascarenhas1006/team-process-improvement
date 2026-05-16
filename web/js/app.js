@@ -33,14 +33,17 @@ function buildTabs() {
   const wrap = document.getElementById("caseTabs");
   wrap.innerHTML = "";
   caseIndex.forEach((row) => {
+    const li = document.createElement("li");
+    li.className = "nav-item";
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "tab";
+    btn.className = "nav-link";
     btn.setAttribute("role", "tab");
     btn.dataset.id = row.id;
     btn.innerHTML = `${row.title}<small>${row.tag}</small>`;
     btn.addEventListener("click", () => selectCase(row.id));
-    wrap.appendChild(btn);
+    li.appendChild(btn);
+    wrap.appendChild(li);
   });
 }
 
@@ -49,14 +52,17 @@ function selectCase(id) {
   if (!data) return;
   localStorage.setItem(STORAGE_KEY, id);
 
-  document.querySelectorAll(".tab").forEach((el) => {
+  document.querySelectorAll(".case-nav .nav-link").forEach((el) => {
     el.classList.toggle("active", el.dataset.id === id);
   });
 
   document.getElementById("main").classList.remove("hidden");
 
   const meta = caseIndex.find((c) => c.id === id);
-  document.getElementById("caseTag").textContent = meta ? meta.tag : data.type;
+  document.getElementById("caseTag").textContent = meta ? meta.tag : data.type || "Case";
+  document.getElementById("caseMeta").textContent = [data.organization, data.year, data.region]
+    .filter(Boolean)
+    .join(" · ");
   document.getElementById("caseTitle").textContent = data.title;
   document.getElementById("caseSubtitle").textContent = data.subtitle || "";
   document.getElementById("caseContext").textContent = data.context || "";
@@ -65,7 +71,7 @@ function selectCase(id) {
 
   const src = document.getElementById("caseSource");
   if (data.source_url) {
-    src.innerHTML = `Source: <a href="${data.source_url}" target="_blank" rel="noopener">${data.source_label || data.source_url}</a> · ${data.organization || ""} · ${data.year || ""}`;
+    src.innerHTML = `Source: <a href="${data.source_url}" target="_blank" rel="noopener">${data.source_label || "link"}</a>`;
   } else {
     src.textContent = data.source_label || "";
   }
@@ -80,84 +86,92 @@ function selectCase(id) {
 function renderKpis(kpis) {
   const grid = document.getElementById("kpiGrid");
   grid.innerHTML = "";
-  kpis.forEach((row) => {
-    const card = document.createElement("div");
-    card.className = "kpi";
-    card.innerHTML = `
-      <div class="kpi-label">${row.label}</div>
-      <div class="kpi-values">
-        <span class="kpi-before">${row.before}</span>
-        <span class="kpi-arrow">→</span>
-        <span class="kpi-after">${row.after}</span>
+  const colors = ["bg-blue-lt", "bg-azure-lt", "bg-teal-lt", "bg-lime-lt"];
+  kpis.forEach((row, i) => {
+    const col = document.createElement("div");
+    col.className = "col-sm-6 col-lg-3";
+    col.innerHTML = `
+      <div class="card kpi-card ${colors[i % colors.length]}">
+        <div class="card-body">
+          <div class="kpi-name">${row.label}</div>
+          <div class="kpi-flow">
+            <span class="kpi-before">${row.before}</span>
+            <i class="ti ti-arrow-right text-secondary" style="font-size:0.9rem"></i>
+            <span class="kpi-after">${row.after}</span>
+          </div>
+          <div class="kpi-unit">${row.unit || ""}</div>
+        </div>
       </div>
-      <div class="kpi-unit">${row.unit || ""}</div>
     `;
-    grid.appendChild(card);
+    grid.appendChild(col);
   });
 }
 
 function renderSprints(sprints) {
   const chart = document.getElementById("sprintChart");
-  const table = document.getElementById("sprintTable");
+  const tbody = document.getElementById("sprintTableBody");
   chart.innerHTML = "";
-  table.innerHTML = "";
+  tbody.innerHTML = "";
 
   if (!sprints.length) {
-    chart.textContent = "No sprint data for this case.";
+    chart.innerHTML = '<p class="text-secondary text-center w-100">No sprint data.</p>';
     return;
   }
 
   const maxPts = Math.max(...sprints.map((s) => s.planned_points || 0), 1);
 
-  sprints.forEach((s) => {
-    const group = document.createElement("div");
-    group.className = "bar-group";
-    const plannedH = Math.round(((s.planned_points || 0) / maxPts) * 130);
-    const doneH = Math.round(((s.done_points || 0) / maxPts) * 130);
-    group.innerHTML = `
-      <div class="bars">
-        <div class="bar planned" style="height:${plannedH}px" title="planned ${s.planned_points}"></div>
-        <div class="bar done" style="height:${doneH}px" title="done ${s.done_points}"></div>
-      </div>
-      <span class="bar-label">S${s.number}</span>
-    `;
-    chart.appendChild(group);
-  });
+  const legend = document.createElement("div");
+  legend.className = "chart-legend";
+  legend.innerHTML = '<span class="legend-planned">Planned</span><span class="legend-done">Done</span>';
 
   sprints.forEach((s) => {
+    const plannedH = Math.round(((s.planned_points || 0) / maxPts) * 130);
+    const doneH = Math.round(((s.done_points || 0) / maxPts) * 130);
+    const col = document.createElement("div");
+    col.className = "chart-col";
+    col.innerHTML = `
+      <div class="chart-bars">
+        <div class="chart-bar planned" style="height:${plannedH}px" title="planned ${s.planned_points}"></div>
+        <div class="chart-bar done" style="height:${doneH}px" title="done ${s.done_points}"></div>
+      </div>
+      <div class="chart-label">Sprint ${s.number}</div>
+    `;
+    chart.appendChild(col);
+
     const pct = s.planned_points
       ? Math.round((100 * (s.done_points || 0)) / s.planned_points)
       : 0;
-    const row = document.createElement("div");
-    row.className = "sprint-row";
-    row.innerHTML = `
-      <span>Sprint ${s.number}</span>
-      <span>${s.goal || ""}</span>
-      <span>${s.done_points}/${s.planned_points} pts</span>
-      <span>${pct}%</span>
+    const tr = document.createElement("tr");
+    const pctClass = pct >= 90 ? "text-green" : pct >= 70 ? "" : "text-red";
+    tr.innerHTML = `
+      <td><span class="badge bg-secondary-lt">S${s.number}</span></td>
+      <td>${s.goal || ""}</td>
+      <td class="text-end">${s.done_points}/${s.planned_points}</td>
+      <td class="text-end ${pctClass}"><strong>${pct}%</strong></td>
     `;
-    table.appendChild(row);
+    tbody.appendChild(tr);
   });
+
+  chart.appendChild(legend);
 }
 
 function renderImpediments(items) {
-  const list = document.getElementById("impedimentList");
-  list.innerHTML = "";
+  const tbody = document.getElementById("impedimentList");
+  tbody.innerHTML = "";
   if (!items.length) {
-    list.innerHTML = "<li>No impediments recorded.</li>";
+    tbody.innerHTML = '<tr><td colspan="4" class="text-secondary">No impediments recorded.</td></tr>';
     return;
   }
   items.forEach((imp) => {
-    const li = document.createElement("li");
-    const status = imp.status === "resolved" ? "resolved" : "open";
-    li.innerHTML = `
-      <span class="imp-status ${status}">${status}</span>
-      <strong>${imp.title}</strong>
-      <div style="color:var(--muted);font-size:0.82rem;margin-top:0.2rem">
-        owner: ${imp.owner || "?"} · impact: ${imp.impact || "?"}
-      </div>
+    const open = imp.status !== "resolved";
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td><span class="badge ${open ? "bg-red-lt" : "bg-green-lt"}">${open ? "open" : "resolved"}</span></td>
+      <td>${imp.title}</td>
+      <td>${imp.owner || "?"}</td>
+      <td><span class="badge bg-yellow-lt">${imp.impact || "?"}</span></td>
     `;
-    list.appendChild(li);
+    tbody.appendChild(tr);
   });
 }
 
@@ -165,24 +179,34 @@ function renderRetros(sessions) {
   const wrap = document.getElementById("retroList");
   wrap.innerHTML = "";
   if (!sessions.length) {
-    wrap.textContent = "No retros on file.";
+    wrap.innerHTML = '<p class="text-secondary mb-0">No retros on file.</p>';
     return;
   }
   sessions.forEach((s) => {
     const block = document.createElement("div");
-    block.className = "retro-block";
-    const glad = (s.glad || []).join("; ");
-    const sad = (s.sad || []).join("; ");
-    const mad = (s.mad || []).join("; ");
+    block.className = "retro-item";
     block.innerHTML = `
-      <h4>Sprint ${s.sprint} · ${s.date || ""}</h4>
-      <p class="retro-action">Action: ${s.action || ""}</p>
-      <p class="retro-tags">glad: ${glad || "n/a"}</p>
-      <p class="retro-tags">sad: ${sad || "n/a"}</p>
-      <p class="retro-tags">mad: ${mad || "n/a"}</p>
+      <h4>Sprint ${s.sprint} <span class="text-secondary fw-normal">· ${s.date || ""}</span></h4>
+      <p class="retro-action mb-0"><strong>Action:</strong> ${s.action || ""}</p>
+      <div class="retro-pills">
+        ${pill("glad", s.glad)}
+        ${pill("sad", s.sad)}
+        ${pill("mad", s.mad)}
+      </div>
     `;
     wrap.appendChild(block);
   });
+}
+
+function pill(label, items) {
+  const list = items || [];
+  if (!list.length) return "";
+  return list
+    .map(
+      (t) =>
+        `<span class="badge bg-secondary-lt text-secondary-fg">${label}: ${t}</span>`
+    )
+    .join("");
 }
 
 function renderChanges(changes) {
@@ -190,7 +214,8 @@ function renderChanges(changes) {
   list.innerHTML = "";
   changes.forEach((text) => {
     const li = document.createElement("li");
-    li.textContent = text;
+    li.className = "list-group-item d-flex align-items-start gap-2";
+    li.innerHTML = `<i class="ti ti-check text-green mt-1"></i><span>${text}</span>`;
     list.appendChild(li);
   });
 }
