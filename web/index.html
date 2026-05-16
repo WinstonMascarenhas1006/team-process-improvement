@@ -10,6 +10,7 @@
   <link href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/css/tabler.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/tabler-icons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/paths.js"></script>
 </head>
 <body class="app-body">
   <div class="page">
@@ -34,11 +35,15 @@
           <div class="row align-items-center">
             <div class="col">
               <h1 class="page-title">Process improvement dashboard</h1>
-              <p class="text-secondary mb-0">Evidence linked case studies with side by side comparison. Not random numbers.</p>
+              <p class="text-secondary mb-0">Primary proof first: real team, live repo, timeline. Industry tabs are cited research only.</p>
             </div>
           </div>
           <ul class="nav nav-pills case-nav mt-4" id="caseTabs" role="tablist"></ul>
-          <p class="mt-2 mb-0"><a href="../docs/METHODOLOGY.md" class="small" target="_blank">Proof levels explained</a></p>
+          <p class="mt-2 mb-0">
+            <a href="case-study.html" class="small me-3"><strong>Read my case study</strong></a>
+            <a href="../docs/ROLE-FIT.md" class="small me-3" target="_blank">Role fit (JD mapping)</a>
+            <a href="../docs/METHODOLOGY.md" class="small" target="_blank">Proof levels explained</a>
+          </p>
         </div>
       </div>
 
@@ -64,7 +69,33 @@
           </div>
 
           <div id="main" class="hidden">
+            <div id="researchBanner" class="alert alert-warning hidden mb-3">
+              <strong>Research case only.</strong> Headline metrics are cited from public sources. Sprint tables are hidden on purpose.
+            </div>
             <div id="trustBanner" class="alert mb-3 hidden"></div>
+            <div id="roleFitPanel" class="hidden"></div>
+            <div id="primaryLanding" class="hidden mb-4"></div>
+            <div id="primaryExtras" class="hidden">
+              <h3 class="section-label">Week by week timeline</h3>
+              <div class="timeline mb-4" id="timeline"></div>
+              <h3 class="section-label">Visual artifacts (from team notes)</h3>
+              <p class="text-secondary small mb-3" id="visualNote"></p>
+              <div class="row row-cards mb-4" id="visualGallery"></div>
+              <div class="row row-cards mb-4">
+                <div class="col-lg-7">
+                  <div class="card h-100">
+                    <div class="card-header"><h3 class="card-title"><i class="ti ti-brand-github"></i> Delivery activity (GitHub)</h3></div>
+                    <div class="card-body"><p class="text-secondary small" id="githubNote"></p><ul class="github-feed" id="githubFeed"></ul></div>
+                  </div>
+                </div>
+                <div class="col-lg-5">
+                  <div class="card h-100">
+                    <div class="card-header"><h3 class="card-title"><i class="ti ti-quote"></i> Stakeholder voices</h3></div>
+                    <div class="card-body" id="stakeholderQuotes"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="card card-hero mb-4">
               <div class="card-body">
                 <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
@@ -119,9 +150,12 @@
               </div>
             </div>
 
-            <h3 class="section-label">Headline KPIs</h3>
+            <h3 class="section-label" id="analytics">Delivery analytics</h3>
+            <p class="text-secondary small mb-3">Sprint throughput, impediments, retros, and KPI cards — primary proof for my facilitation case.</p>
+            <h4 class="section-label">Headline KPIs</h4>
             <div class="row row-cards mb-4" id="kpiGrid"></div>
 
+            <div id="operationalSections">
             <div class="row row-cards mb-4">
               <div class="col-lg-7">
                 <div class="card h-100">
@@ -189,6 +223,7 @@
                 </div>
               </div>
             </div>
+            </div>
           </div>
         </div>
       </div>
@@ -200,6 +235,7 @@
       </footer>
     </div>
   </div>
+  <script src="js/paths.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

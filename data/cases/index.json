@@ -2,9 +2,10 @@
   "cases": [
     {
       "id": "student-peer-review",
-      "title": "Student software team",
-      "tag": "Personal",
-      "file": "student-peer-review/case.json"
+      "title": "My facilitation project",
+      "tag": "Primary proof",
+      "file": "student-peer-review/case.json",
+      "primary": true
     },
     {
       "id": "ing-agile",

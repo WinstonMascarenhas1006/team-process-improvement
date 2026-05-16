@@ -3,7 +3,12 @@ CV Project (local disk)
 Folder: d:\CV-Projects\team-process-improvement
 GitHub: https://github.com/WinstonMascarenhas1006/team-process-improvement
 
-This repo documents four process improvement case studies (1 personal, 3 from public industry sources).
-It includes a web dashboard, templates, and Python CLI tools to explore KPIs, sprints, impediments and retros per case.
+RECRUITER PATH (pin this repo on GitHub profile):
+  1. Landing:  index.html  (or GitHub Pages root)
+  2. Story:    web/case-study.html  +  docs/case-study.md
+  3. Metrics:  web/index.html  (KPIs, sprints, impediments, retros, timeline, GitHub)
+  4. JD fit:   docs/ROLE-FIT.md  (Mercedes MER00042CZ mapping)
+  5. Code:     control-engineering-peer-correction repo
 
-Built for portfolio and applications where agile facilitation matters (e.g. Scrum Master working student roles).
+Live dashboard (local): python src/run_dashboard.py  ->  http://127.0.0.1:8765/web/
+GitHub Pages: enable Pages on main branch, root /  ->  ...github.io/team-process-improvement/

@@ -1,11 +1,11 @@
-const INDEX_URL = "../data/cases/index.json";
-const COMPARE_URL = "../data/compare-matrix.json";
 const STORAGE_KEY = "process_dashboard_case";
 const COMPARE_ID = "__compare__";
+const PRIMARY_ID = "student-peer-review";
 
 let caseIndex = [];
 let bundles = {};
 let compareData = null;
+let roleFit = null;
 
 const PROOF_LABELS = {
   primary: { text: "Primary proof", class: "bg-green-lt" },
@@ -15,18 +15,20 @@ const PROOF_LABELS = {
 
 async function boot() {
   try {
-    const [indexRes, compareRes] = await Promise.all([
-      fetch(INDEX_URL),
-      fetch(COMPARE_URL),
+    const [indexRes, compareRes, roleRes] = await Promise.all([
+      fetch(assetUrl("data/cases/index.json")),
+      fetch(assetUrl("data/compare-matrix.json")),
+      fetch(assetUrl("data/role-fit.json")),
     ]);
     if (!indexRes.ok) throw new Error("index missing");
     const data = await indexRes.json();
     caseIndex = data.cases || [];
     if (compareRes.ok) compareData = await compareRes.json();
+    if (roleRes.ok) roleFit = await roleRes.json();
 
     await Promise.all(
       caseIndex.map(async (row) => {
-        const path = `../data/cases/${row.file}`;
+        const path = assetUrl(`data/cases/${row.file}`);
         const r = await fetch(path);
         if (!r.ok) throw new Error(row.id);
         bundles[row.id] = await r.json();
@@ -34,13 +36,14 @@ async function boot() {
     );
 
     buildTabs();
+    markOpsSections();
     const saved = localStorage.getItem(STORAGE_KEY);
     const start =
       saved === COMPARE_ID
         ? COMPARE_ID
-        : caseIndex.find((c) => c.id === saved)
+        : saved && bundles[saved]
           ? saved
-          : caseIndex[0].id;
+          : PRIMARY_ID;
     if (start === COMPARE_ID) showCompare();
     else selectCase(start);
 
@@ -55,18 +58,12 @@ function buildTabs() {
   const wrap = document.getElementById("caseTabs");
   wrap.innerHTML = "";
 
-  const compareLi = document.createElement("li");
-  compareLi.className = "nav-item";
-  const compareBtn = document.createElement("button");
-  compareBtn.type = "button";
-  compareBtn.className = "nav-link";
-  compareBtn.dataset.id = COMPARE_ID;
-  compareBtn.innerHTML = `Compare all<small>side by side</small>`;
-  compareBtn.addEventListener("click", () => showCompare());
-  compareLi.appendChild(compareBtn);
-  wrap.appendChild(compareLi);
+  const ordered = [
+    ...caseIndex.filter((c) => c.id === PRIMARY_ID),
+    ...caseIndex.filter((c) => c.id !== PRIMARY_ID),
+  ];
 
-  caseIndex.forEach((row) => {
+  ordered.forEach((row) => {
     const li = document.createElement("li");
     li.className = "nav-item";
     const btn = document.createElement("button");
@@ -74,10 +71,39 @@ function buildTabs() {
     btn.className = "nav-link";
     btn.setAttribute("role", "tab");
     btn.dataset.id = row.id;
-    btn.innerHTML = `${row.title}<small>${row.tag}</small>`;
+    const star = row.id === PRIMARY_ID ? "★ " : "";
+    btn.innerHTML = `${star}${row.title}<small>${row.tag}</small>`;
     btn.addEventListener("click", () => selectCase(row.id));
     li.appendChild(btn);
     wrap.appendChild(li);
+  });
+
+  const compareLi = document.createElement("li");
+  compareLi.className = "nav-item";
+  const compareBtn = document.createElement("button");
+  compareBtn.type = "button";
+  compareBtn.className = "nav-link";
+  compareBtn.dataset.id = COMPARE_ID;
+  compareBtn.innerHTML = `Compare research<small>side by side</small>`;
+  compareBtn.addEventListener("click", () => showCompare());
+  compareLi.appendChild(compareBtn);
+  wrap.appendChild(compareLi);
+}
+
+function markOpsSections() {
+  const sprintRow = document.getElementById("sprintChart")?.closest(".row.row-cards");
+  const impRow = document.getElementById("impedimentList")?.closest(".row.row-cards");
+  [sprintRow, impRow].forEach((el) => el?.classList.add("ops-section"));
+}
+
+function setOperationalVisible(show) {
+  const ops = document.getElementById("operationalSections");
+  if (ops) {
+    ops.classList.toggle("hidden", !show);
+    return;
+  }
+  document.querySelectorAll(".ops-section").forEach((el) => {
+    el.classList.toggle("hidden", !show);
   });
 }
 
@@ -122,14 +148,242 @@ function selectCase(id) {
     src.textContent = data.source_label || "";
   }
 
+  const isPrimary = id === PRIMARY_ID;
+
+  document.getElementById("researchBanner").classList.toggle("hidden", isPrimary);
+  document.getElementById("primaryLanding").classList.toggle("hidden", !isPrimary);
+  document.getElementById("primaryExtras").classList.toggle("hidden", !isPrimary);
+  setOperationalVisible(isPrimary);
+
   renderTrust(data);
   renderEvidence(data.evidence || []);
   renderArtifacts(data.artifacts || []);
   renderKpis(data.kpis || []);
-  renderSprints(data.sprints || [], data.trust);
-  renderImpediments(data.impediments || [], data.trust);
-  renderRetros(data.retros || []);
-  renderChanges(data.changes || []);
+
+  document.getElementById("roleFitPanel")?.classList.toggle("hidden", !isPrimary);
+  if (isPrimary) {
+    renderRoleFit();
+    renderPrimaryLanding(data);
+    renderTimeline(data.timeline || []);
+    renderVisualGallery(data);
+    renderGithubActivity(data.github_activity);
+    renderStakeholderQuotes(data.stakeholder_quotes || []);
+    renderSprints(data.sprints || [], data.trust);
+    renderImpediments(data.impediments || [], data.trust);
+    renderRetros(data.retros || []);
+    renderChanges(data.changes || []);
+  } else {
+    renderSprints([], data.trust);
+    renderImpediments([], data.trust);
+    renderRetros([]);
+    renderChanges([]);
+  }
+}
+
+function renderPrimaryLanding(data) {
+  const box = document.getElementById("primaryLanding");
+  const gh = data.github_activity || {};
+  const caseStudyHref =
+    data.case_study_url || "case-study.html";
+  const caseStudyGithub =
+    data.case_study_github_url ||
+    "https://github.com/WinstonMascarenhas1006/team-process-improvement/blob/main/docs/case-study.md";
+  const demoUrl = (data.demo_url || gh.demo_url || "").trim();
+  const demoLive = data.demo_status === "live" && demoUrl;
+  const demoSetup =
+    data.demo_setup_url ||
+    "https://github.com/WinstonMascarenhas1006/control-engineering-peer-correction#5-run-the-development-server";
+  const demoNote =
+    data.demo_note ||
+    "No public demo URL yet. Run the delivery app locally from its GitHub repo.";
+
+  box.innerHTML = `
+    <div class="card card-hero-primary">
+      <div class="card-body">
+        <span class="badge bg-green-lt mb-2">★ Primary case · your proof</span>
+        <h2 class="case-title mb-2">Where I acted as Scrum-style facilitator</h2>
+        <p class="mb-3">Peer review app for a master software engineering course. <a href="${caseStudyHref}">Read the full case study</a> for the story, then scroll for timeline, artifacts, GitHub commits, and quotes.</p>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-primary" href="${caseStudyHref}"><i class="ti ti-book"></i> Case study</a>
+          <a class="btn btn-outline-primary" href="#analytics"><i class="ti ti-chart-bar"></i> Jump to analytics</a>
+          <a class="btn btn-outline-primary" href="${gh.repo_url || "#"}" target="_blank" rel="noopener"><i class="ti ti-brand-github"></i> Delivery repo</a>
+          ${
+            demoLive
+              ? `<a class="btn btn-outline-primary" href="${demoUrl}" target="_blank" rel="noopener"><i class="ti ti-player-play"></i> Run app locally</a>`
+              : `<a class="btn btn-outline-secondary" href="${demoSetup}" target="_blank" rel="noopener"><i class="ti ti-player-play"></i> Run app locally</a>`
+          }
+        </div>
+        ${
+          demoLive
+            ? ""
+            : `<p class="small text-secondary mt-2 mb-0 demo-note">${escapeHtml(demoNote)}</p>`
+        }
+        ${data.video_walkthrough_url ? `<p class="small mt-2 mb-0"><a href="${data.video_walkthrough_url}" target="_blank">Walkthrough video</a></p>` : ""}
+        <p class="small text-secondary mt-2 mb-0"><a href="${caseStudyGithub}" target="_blank" rel="noopener">Case study on GitHub</a></p>
+      </div>
+    </div>
+  `;
+}
+
+function renderRoleFit() {
+  const el = document.getElementById("roleFitPanel");
+  if (!el || !roleFit) return;
+  const rows = (roleFit.requirements || [])
+    .map(
+      (r) => `<tr>
+      <td><strong>${escapeHtml(r.jd_theme)}</strong></td>
+      <td>${escapeHtml(r.my_evidence)}</td>
+      <td><span class="badge bg-green-lt">${escapeHtml(r.metric || "")}</span></td>
+    </tr>`
+    )
+    .join("");
+  el.innerHTML = `
+    <div class="card mb-4">
+      <div class="card-header">
+        <h3 class="card-title"><i class="ti ti-briefcase"></i> Fit for Junior Scrum Master roles</h3>
+        <span class="badge bg-azure-lt">${escapeHtml(roleFit.company_example || "")} · ${escapeHtml(roleFit.reference_id || "")}</span>
+      </div>
+      <div class="card-body">
+        <p class="mb-3">${escapeHtml(roleFit.summary || "")}</p>
+        <div class="table-responsive">
+          <table class="table table-vcenter table-sm role-fit-table mb-0">
+            <thead><tr><th>Typical requirement</th><th>My evidence</th><th>Metric</th></tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+        <p class="small text-secondary mt-3 mb-0">Industry tabs show cited public research — not claimed as my work.</p>
+      </div>
+    </div>
+  `;
+  el.classList.remove("hidden");
+}
+
+
+function renderTimeline(items) {
+  const wrap = document.getElementById("timeline");
+  wrap.innerHTML = "";
+  items.forEach((step) => {
+    const tone = step.tone || "neutral";
+    const el = document.createElement("div");
+    el.className = `timeline-step tone-${tone}`;
+    el.innerHTML = `
+      <div class="timeline-week">Week ${step.week}</div>
+      <div class="timeline-title">${step.title}</div>
+      <p class="timeline-detail mb-0">${step.detail}</p>
+    `;
+    wrap.appendChild(el);
+  });
+}
+
+function renderVisualGallery(data) {
+  document.getElementById("visualNote").textContent =
+    data.visual_artifacts?.note || "Rendered from facilitation notes in this repository.";
+
+  const sprints = data.sprints || [];
+  const retro = (data.retros || [])[0];
+  const dod = data.visual_artifacts?.dod_items || [];
+
+  const kanban = document.getElementById("visualGallery");
+  kanban.innerHTML = `
+    <div class="col-md-6 col-lg-3">
+      <div class="artifact-frame">
+        <div class="artifact-title"><i class="ti ti-layout-kanban"></i> Sprint board</div>
+        <div class="artifact-body kanban" id="artifactKanban"></div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+      <div class="artifact-frame">
+        <div class="artifact-title"><i class="ti ti-notes"></i> Retro wall</div>
+        <div class="artifact-body" id="artifactRetro"></div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+      <div class="artifact-frame">
+        <div class="artifact-title"><i class="ti ti-list-check"></i> Definition of Done</div>
+        <div class="artifact-body" id="artifactDod"></div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+      <div class="artifact-frame">
+        <div class="artifact-title"><i class="ti ti-calendar"></i> Ceremony rhythm</div>
+        <div class="artifact-body" id="artifactCeremony"></div>
+      </div>
+    </div>
+  `;
+
+  const kanbanEl = document.getElementById("artifactKanban");
+  sprints.forEach((s) => {
+    const col = document.createElement("div");
+    col.className = "kanban-col";
+    const pct = s.planned_points ? Math.round((100 * s.done_points) / s.planned_points) : 0;
+    col.innerHTML = `<div class="kanban-head">Sprint ${s.number}</div><div class="kanban-card">${s.goal}</div><div class="kanban-meta">${s.done_points}/${s.planned_points} pts · ${pct}%</div>`;
+    kanbanEl.appendChild(col);
+  });
+
+  const retroEl = document.getElementById("artifactRetro");
+  if (retro) {
+    ["mad", "sad", "glad"].forEach((bucket) => {
+      const col = document.createElement("div");
+      col.className = `retro-col ${bucket}`;
+      col.innerHTML = `<div class="retro-col-title">${bucket}</div>`;
+      (retro[bucket] || []).forEach((t) => {
+        const note = document.createElement("div");
+        note.className = "retro-note";
+        note.textContent = t;
+        col.appendChild(note);
+      });
+      retroEl.appendChild(col);
+    });
+  }
+
+  const dodEl = document.getElementById("artifactDod");
+  dod.forEach((item) => {
+    const row = document.createElement("label");
+    row.className = "dod-row";
+    row.innerHTML = `<input type="checkbox" checked disabled> <span>${item}</span>`;
+    dodEl.appendChild(row);
+  });
+
+  const cerEl = document.getElementById("artifactCeremony");
+  cerEl.innerHTML = `
+    <div class="ceremony-row"><span>Mon</span> Daily 15 min</div>
+    <div class="ceremony-row"><span>Biweekly</span> Planning (max 90 min)</div>
+    <div class="ceremony-row"><span>Biweekly</span> Retro + 1 action</div>
+    <div class="ceremony-row"><span>Always</span> Impediment log</div>
+  `.replace(/<\/div>/g, "</div>");
+}
+
+function renderGithubActivity(gh) {
+  const feed = document.getElementById("githubFeed");
+  const note = document.getElementById("githubNote");
+  feed.innerHTML = "";
+  if (!gh || !gh.commits?.length) {
+    note.textContent = "No GitHub activity listed.";
+    return;
+  }
+  note.textContent = gh.note || "";
+  gh.commits.forEach((c) => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <span class="gh-date">${c.date}</span>
+      <a href="${c.url}" target="_blank" rel="noopener">${escapeHtml(c.message)}</a>
+    `;
+    feed.appendChild(li);
+  });
+}
+
+function renderStakeholderQuotes(quotes) {
+  const wrap = document.getElementById("stakeholderQuotes");
+  wrap.innerHTML = "";
+  quotes.forEach((q) => {
+    const block = document.createElement("blockquote");
+    block.className = "stakeholder-quote";
+    block.innerHTML = `
+      <p class="mb-1">"${escapeHtml(q.quote)}"</p>
+      <footer class="text-secondary small">${escapeHtml(q.role)} · ${escapeHtml(q.when || "")}</footer>
+    `;
+    wrap.appendChild(block);
+  });
 }
 
 function renderTrust(data) {

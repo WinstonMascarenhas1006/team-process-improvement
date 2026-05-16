@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Winston Mascarenhas · Agile facilitation portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1e4d6b;
+      --teal: #0f766e;
+      --paper: #f5f0e8;
+      --ink: #1c2b36;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "DM Sans", system-ui, sans-serif;
+      background: linear-gradient(160deg, #ebe4d8, var(--paper) 45%, #e8eef2);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+    .wrap { max-width: 52rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+    h1 {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: clamp(1.75rem, 4vw, 2.35rem);
+      color: #0f2940;
+      line-height: 1.2;
+      margin: 0 0 0.75rem;
+    }
+    .lead { font-size: 1.05rem; line-height: 1.55; color: #3d4f5c; margin-bottom: 2rem; }
+    .badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: rgba(15, 118, 110, 0.12);
+      color: var(--teal);
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    .steps { display: grid; gap: 1rem; margin: 2rem 0; }
+    .step {
+      background: #fffdf9;
+      border: 1px solid #d8cfc4;
+      border-radius: 12px;
+      padding: 1.25rem 1.35rem;
+      box-shadow: 0 2px 12px rgba(28, 43, 54, 0.06);
+    }
+    .step-num {
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 0.8rem;
+      margin-bottom: 0.35rem;
+    }
+    .step h2 { font-size: 1.1rem; margin: 0 0 0.35rem; color: #0f2940; }
+    .step p { margin: 0 0 1rem; font-size: 0.92rem; color: #5c6b76; }
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.55rem 1rem;
+      border-radius: 8px;
+      margin-right: 0.5rem;
+    }
+    .btn-primary { background: linear-gradient(135deg, var(--navy), var(--teal)); color: #fff; }
+    .btn-outline { border: 1px solid var(--navy); color: var(--navy); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      background: #fffdf9;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #d8cfc4;
+    }
+    th, td { padding: 0.65rem 0.75rem; text-align: left; border-bottom: 1px solid #ebe4d8; vertical-align: top; }
+    th { background: #f7f3ec; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .foot { margin-top: 2.5rem; font-size: 0.82rem; color: #6b7c88; }
+    .foot a { color: var(--navy); }
+  </style>
+  <script src="web/js/paths.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <p class="badge">Portfolio · Junior Scrum Master / agile facilitation</p>
+    <h1>How I improved a real student dev team — with metrics you can verify</h1>
+    <p class="lead">
+      Recruiters: start with the <strong>case study</strong> (what I did and why it matters for agile roles such as
+      Mercedes-Benz Werkstudent Junior Scrum Master, ref. MER00042CZ), then open the <strong>analytics dashboard</strong>
+      for sprint KPIs, impediments, retros, timeline, and GitHub delivery activity.
+    </p>
+
+    <div class="steps">
+      <article class="step">
+        <div class="step-num">Step 1
+        <h2>Case study</h2>
+        <p>Context, before/after, what ceremonies and practices I introduced, and honest outcomes.</p>
+        <a class="btn btn-primary" id="linkCaseStudy" href="web/case-study.html">Read case study</a>
+      </article>
+      <article class="step">
+        <div class="step-num">Step 2
+        <h2>Analytics dashboard</h2>
+        <p>Interactive proof: 62% → 100% sprint completion, impediment log, retro actions, industry comparison.</p>
+        <a class="btn btn-primary" id="linkDashboard" href="web/index.html">Open dashboard</a>
+      </article>
+      <article class="step">
+        <div class="step-num">Step 3
+        <h2>Delivery codebase</h2>
+        <p>The peer review app the team built — public GitHub repo with real commits.</p>
+        <a class="btn btn-outline" href="https://github.com/WinstonMascarenhas1006/control-engineering-peer-correction" target="_blank" rel="noopener">Delivery repo</a>
+      </article>
+    </div>
+
+    <h2 style="font-family:'Source Serif 4',serif;font-size:1.2rem;color:#0f2940;margin:2rem 0 0.75rem;">Role fit at a glance</h2>
+    <table id="fitTable">
+      <thead><tr><th>Requirement</th><th>Evidence</th><th>Metric</th></tr></thead>
+      <tbody></tbody>
+    </table>
+
+    <p class="foot">
+      <a href="https://github.com/WinstonMascarenhas1006/team-process-improvement">GitHub repository</a> ·
+      <a id="linkRoleFit" href="docs/ROLE-FIT.md">Full JD mapping</a> ·
+      <a href="docs/METHODOLOGY.md">Proof methodology</a>
+    </p>
+  </div>
+  <script>
+    (function () {
+      const base = window.REPO_BASE || "";
+      document.getElementById("linkCaseStudy").href = base + "/web/case-study.html";
+      document.getElementById("linkDashboard").href = base + "/web/index.html";
+      document.getElementById("linkRoleFit").href = base + "/docs/ROLE-FIT.md";
+      fetch((window.assetUrl || ((p) => base + "/" + p))("data/role-fit.json"))
+        .then((r) => r.json())
+        .then((data) => {
+          const tbody = document.querySelector("#fitTable tbody");
+          (data.requirements || []).forEach((row) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `<td><strong>${row.jd_theme}</strong></td><td>${row.my_evidence}</td><td>${row.metric || ""}</td>`;
+            tbody.appendChild(tr);
+          });
+        })
+        .catch(() => {});
+    })();
+  </script>
+</body>
+</html>

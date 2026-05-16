@@ -1,69 +1,85 @@
 # team-process-improvement
 
-**CV project** · `d:\CV-Projects\team-process-improvement`  
-Author: [Winston Mascarenhas](https://github.com/WinstonMascarenhas1006)
+**Agile facilitation portfolio** · [Winston Mascarenhas](https://github.com/WinstonMascarenhas1006)
 
-## What this is
+Built for roles such as **Mercedes-Benz Werkstudent Junior Scrum Master (MER00042CZ)** — shows how I facilitated a real student team, with metrics and artifacts recruiters can verify.
 
-A small toolkit plus **interactive dashboard** for comparing **four** process improvement case studies:
+---
 
-1. **Student software team** (my own facilitation notes)
-2. **[ING](https://www.ing.com/Newsroom/News/INGs-agile-transformation.htm)** agile transformation
-3. **[Spotify](https://engineering.atspotify.com/2020/03/spotify-engineering-culture-part-1/)** squads and engineering culture
-4. **[UK Government Digital Service](https://www.gov.uk/government/organisations/government-digital-service)** iterative public services
+## For recruiters (3 steps)
 
-Pick a case in the UI or with `--case` on the CLI. KPIs, sprints, impediments and retros update for that story.
+| Step | What you get | Open |
+|------|----------------|------|
+| **1** | **Case study** — context, what I changed, outcomes | [**Read case study**](web/case-study.html) |
+| **2** | **Analytics dashboard** — KPIs, sprints, impediments, retros, timeline, GitHub | [**Open dashboard**](web/index.html) |
+| **3** | **Delivery code** — peer review app the team shipped | [**Delivery repo**](https://github.com/WinstonMascarenhas1006/control-engineering-peer-correction) |
 
-## Is this real proof?
+**JD mapping:** [docs/ROLE-FIT.md](docs/ROLE-FIT.md) · **Proof levels:** [docs/METHODOLOGY.md](docs/METHODOLOGY.md)
 
-**Honestly:** partly yes, partly no. The dashboard now labels each section.
+### Live site (GitHub Pages)
 
-| What | Proof level |
-|------|-------------|
-| Student team KPIs (62% → 100% points) | **Primary** — math matches `data/cases/student-peer-review/case.json` |
-| Student repo + templates | **Artifacts** — links on the dashboard |
-| ING / Spotify / GDS headline KPIs | **Verified public** — quoted excerpts + McKinsey, ING, GDS, Spotify links |
-| Industry sprint & impediment tables | **Illustrative** — shaped for comparison, not leaked internal data |
+After Pages is enabled on `main`, the public URL is:
 
-Use the **Compare all** tab for side by side before/after across cases. Read [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md) before interviews.
+`https://winstonmascarenhas1006.github.io/team-process-improvement/`
 
-## Godmode dashboard
+Pin this repo on your GitHub profile with description: *Agile facilitation case study + metrics dashboard (Junior SM / MER00042CZ).*
+
+---
+
+## What the numbers show (primary case)
+
+| Metric | Before | After |
+|--------|--------|-------|
+| Sprint completion | 62% (13/21 pts) | 100% (16/16 pts) |
+| Planning duration | ~150 min | 90 min cap |
+| Open impediments at sprint end | 2 | 0 |
+
+Source: [data/cases/student-peer-review/case.json](data/cases/student-peer-review/case.json) — interactive charts in the dashboard.
+
+---
+
+## Repository layout
+
+| Path | Purpose |
+|------|---------|
+| [`index.html`](index.html) | Recruiter landing page |
+| [`web/`](web/) | Case study viewer + analytics dashboard |
+| [`docs/case-study.md`](docs/case-study.md) | Full narrative |
+| [`docs/ROLE-FIT.md`](docs/ROLE-FIT.md) | Requirement → evidence mapping |
+| [`data/cases/`](data/cases/) | Case data (1 primary + 3 industry research) |
+| [`src/`](src/) | Python CLI + local server |
+
+---
+
+## Run locally
 
 ```bash
 python src/run_dashboard.py
 ```
 
-Browser opens at `http://127.0.0.1:8765/web/`. Use the tabs to switch cases. Your last choice is remembered in local storage.
+Opens `http://127.0.0.1:8765/web/` (serves repo root so data + docs load).
 
-## CLI (all cases)
+**Delivery app (separate repo):** not on a public URL yet — `npm run dev` → http://localhost:3000. See [setup](https://github.com/WinstonMascarenhas1006/control-engineering-peer-correction#5-run-the-development-server).
+
+---
+
+## Honesty
+
+| Content | Proof level |
+|---------|-------------|
+| Student team KPIs & sprint tables | **Primary** — my facilitation, consistent JSON |
+| Delivery repo commits | **Public GitHub** |
+| ING / Spotify / GDS | **Verified public** headlines; sprint rows **illustrative** for comparison |
+
+---
+
+## CLI
 
 ```bash
-python src/sprint_summary.py --case ing-agile kpis
 python src/sprint_summary.py --case student-peer-review overview
-python src/impediment_tracker.py --case uk-gds list
-python src/retro_board.py --case spotify-squads list
+python src/impediment_tracker.py --case student-peer-review list
 ```
 
-Default case is `student-peer-review`.
+---
 
-## Why it matters
-
-Software engineering includes how teams deliver, not only code. This repo links coursework style agile practice to well known industry transformations. Useful for Scrum Master or agile working student applications.
-
-## Layout
-
-```
-web/                    dashboard (HTML + JS)
-data/cases/             one json bundle per case study
-docs/case-studies.md    index and notes on sources
-src/                    CLI tools and run_dashboard.py
-templates/              working agreement, retro guide
-```
-
-## Sources and honesty
-
-Industry KPIs are summarized from public material linked in each case json. Sprint and impediment tables are structured examples so every case works the same in the app. Say that clearly in interviews.
-
-## License
-
-MIT
+MIT License

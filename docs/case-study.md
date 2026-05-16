@@ -1,5 +1,7 @@
 # Case study: fixing how a student dev team worked
 
+> **Recruiters:** After reading this page, open the [**analytics dashboard**](../web/index.html) for KPIs, sprint data, impediments, retros, timeline, and GitHub activity. See [**ROLE-FIT.md**](ROLE-FIT.md) for Junior Scrum Master / Mercedes-Benz MER00042CZ mapping.
+
 ## Context
 
 Five master students built a peer review tool for a software engineering course. The code was fine most weeks, but coordination was not. Meetings ran long, blockers hid in chat, and sprint goals changed mid week without anyone writing it down.

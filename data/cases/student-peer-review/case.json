@@ -15,6 +15,11 @@
   "operational_note": "Sprint and impediment rows are stored in this repository. Numbers are consistent with the KPI cards (13/21 then 16/16 points).",
   "artifacts": [
     {
+      "label": "Full case study (how I facilitated the team)",
+      "url": "https://github.com/WinstonMascarenhas1006/team-process-improvement/blob/main/docs/case-study.md",
+      "type": "document"
+    },
+    {
       "label": "Peer review application repo",
       "url": "https://github.com/WinstonMascarenhas1006/control-engineering-peer-correction",
       "type": "repository"
@@ -171,5 +176,97 @@
       "sad": ["One story was too big and rolled over"],
       "mad": ["Slack replaced the daily some days"]
     }
-  ]
+  ],
+  "case_study_url": "case-study.html",
+  "case_study_github_url": "https://github.com/WinstonMascarenhas1006/team-process-improvement/blob/main/docs/case-study.md",
+  "demo_url": "",
+  "demo_status": "not_deployed",
+  "demo_setup_url": "https://github.com/WinstonMascarenhas1006/control-engineering-peer-correction#5-run-the-development-server",
+  "demo_note": "The peer review app is not on a public URL yet. Clone the delivery repo and run npm run dev (localhost:3000), or deploy it to Vercel.",
+  "video_walkthrough_url": "",
+  "timeline": [
+    {
+      "week": 1,
+      "title": "Before: unclear ownership",
+      "detail": "Planning ran past 2 hours. Blockers lived in Slack threads.",
+      "tone": "bad"
+    },
+    {
+      "week": 2,
+      "title": "Working agreement introduced",
+      "detail": "Daily at fixed time, DoD written down, impediment log started.",
+      "tone": "neutral"
+    },
+    {
+      "week": 4,
+      "title": "Sprint 1 retro action shipped",
+      "detail": "Planning capped at 90 minutes. First sprint logged as 13/21 points.",
+      "tone": "neutral"
+    },
+    {
+      "week": 5,
+      "title": "Delivery stabilises",
+      "detail": "CI blocker closed in daily. Sprint 2 finishes 17/18 points.",
+      "tone": "good"
+    },
+    {
+      "week": 6,
+      "title": "After: demo ready",
+      "detail": "Sprint 3 at 16/16 points. Zero open impediments at sprint end.",
+      "tone": "good"
+    }
+  ],
+  "stakeholder_quotes": [
+    {
+      "role": "Teammate (developer)",
+      "quote": "Once every blocker had a name next to it, we stopped talking in circles in chat.",
+      "when": "After sprint 2"
+    },
+    {
+      "role": "Product owner (course)",
+      "quote": "Stories started arriving with acceptance criteria before planning, not during the demo week.",
+      "when": "Sprint 2 planning"
+    },
+    {
+      "role": "Facilitator (me)",
+      "quote": "I was not the main feature developer. I kept the team rhythm and made problems visible early.",
+      "when": "Project close"
+    }
+  ],
+  "github_activity": {
+    "repo_url": "https://github.com/WinstonMascarenhas1006/control-engineering-peer-correction",
+    "demo_url": "",
+    "note": "Live delivery repo for the peer review app. Commits below are public on GitHub.",
+    "commits": [
+      {
+        "date": "2025-12-16",
+        "message": "Fix admin login redirect loop (signed tokens for serverless)",
+        "url": "https://github.com/WinstonMascarenhas1006/control-engineering-peer-correction/commit/280e5f9f77ee092d9876620f52ca6e9e463f74aa"
+      },
+      {
+        "date": "2025-12-16",
+        "message": "Fix database schema: security question migration on registration",
+        "url": "https://github.com/WinstonMascarenhas1006/control-engineering-peer-correction/commit/ee83a7722d203e3f778e5e8e6f17e0e65238ee1a"
+      },
+      {
+        "date": "2025-12-16",
+        "message": "Add automatic database migration on registration and lookup",
+        "url": "https://github.com/WinstonMascarenhas1006/control-engineering-peer-correction/commit/29e54931a38b103e27409734ead1d842768dad9d"
+      },
+      {
+        "date": "2025-12-14",
+        "message": "Initial project scaffold (TypeScript app)",
+        "url": "https://github.com/WinstonMascarenhas1006/control-engineering-peer-correction/commit/e3aed6523c23c10b40b209c5cef455b75241ddeb"
+      }
+    ]
+  },
+  "visual_artifacts": {
+    "note": "Rendered from team notes in this repo (not stock photos). Replace with your own screenshots in web/img/evidence/ if you have them.",
+    "dod_items": [
+      "Code reviewed by another student",
+      "Tests pass locally",
+      "PR description states what changed",
+      "No merge with red CI"
+    ]
+  }
 }

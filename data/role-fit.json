@@ -1,0 +1,64 @@
+{
+  "target_role": "Junior Scrum Master / Agile facilitation (Werkstudent)",
+  "reference_id": "MER00042CZ",
+  "company_example": "Mercedes-Benz",
+  "summary": "I facilitated a real student software team (peer review tool) with measurable delivery improvement, while comparing my approach to published agile transformations at ING, Spotify, and UK GDS.",
+  "start_here": [
+    {
+      "step": 1,
+      "label": "Read the case study",
+      "description": "What the team struggled with, what I changed, and outcomes in plain language.",
+      "url": "web/case-study.html"
+    },
+    {
+      "step": 2,
+      "label": "Explore the analytics dashboard",
+      "description": "KPIs, sprint throughput, impediment log, retros, timeline, and GitHub delivery activity.",
+      "url": "web/index.html"
+    },
+    {
+      "step": 3,
+      "label": "Verify the delivery codebase",
+      "description": "The product the team shipped — separate repo with public commits.",
+      "url": "https://github.com/WinstonMascarenhas1006/control-engineering-peer-correction"
+    }
+  ],
+  "requirements": [
+    {
+      "jd_theme": "Facilitate agile ceremonies & team rhythm",
+      "my_evidence": "Introduced 15-minute daily, capped planning at 90 minutes, biweekly retro with exactly one action item.",
+      "metric": "Planning duration: 150 min → 90 min",
+      "dashboard_section": "timeline"
+    },
+    {
+      "jd_theme": "Remove impediments & make blockers visible",
+      "my_evidence": "Shared impediment log with owners; CI blocker assigned in daily and closed in 2 days.",
+      "metric": "Open impediments at sprint end: 2 → 0",
+      "dashboard_section": "impediments"
+    },
+    {
+      "jd_theme": "Improve predictability & delivery flow",
+      "my_evidence": "Sprint goals, point tracking, and sprint summaries before course demos.",
+      "metric": "Sprint completion: 62% → 100% of planned points",
+      "dashboard_section": "sprints"
+    },
+    {
+      "jd_theme": "Quality gates & Definition of Done",
+      "my_evidence": "Team DoD checklist (review, tests, PR description, no red CI) enforced after retro action.",
+      "metric": "Documented in working agreement + retro sprint 1",
+      "dashboard_section": "artifacts"
+    },
+    {
+      "jd_theme": "Stakeholder / product alignment",
+      "my_evidence": "Acceptance criteria on backlog items before planning; product owner feedback captured in quotes.",
+      "metric": "Stories with AC before planning (sprint 2+)",
+      "dashboard_section": "quotes"
+    },
+    {
+      "jd_theme": "Continuous improvement mindset",
+      "my_evidence": "Compared my facilitation to ING, Spotify, and GDS public agile stories — same levers, different scale.",
+      "metric": "4 case studies + compare matrix in dashboard",
+      "dashboard_section": "compare"
+    }
+  ]
+}
