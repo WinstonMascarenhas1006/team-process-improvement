@@ -3,7 +3,7 @@ CV Project (local disk)
 Folder: d:\CV-Projects\team-process-improvement
 GitHub: https://github.com/WinstonMascarenhas1006/team-process-improvement
 
-This repo documents a small process improvement case study from a student software team.
-It includes notes, templates, and simple Python scripts to track impediments and sprint outcomes.
+This repo documents four process improvement case studies (1 personal, 3 from public industry sources).
+It includes a web dashboard, templates, and Python CLI tools to explore KPIs, sprints, impediments and retros per case.
 
 Built for portfolio and applications where agile facilitation matters (e.g. Scrum Master working student roles).

@@ -1,58 +1,56 @@
 # team-process-improvement
 
-**CV project** · local folder: `d:\CV-Projects\team-process-improvement`  
+**CV project** · `d:\CV-Projects\team-process-improvement`  
 Author: [Winston Mascarenhas](https://github.com/WinstonMascarenhas1006)
 
 ## What this is
 
-During a master level software engineering group project, our team wrote good code but worked in a messy way. Long meetings, silent blockers, last minute demos. I stepped into a facilitation role and introduced a small agile routine: short dailies, capped planning, retros with one action, and a shared impediment list.
+A small toolkit plus **interactive dashboard** for comparing **four** process improvement case studies:
 
-This repository is the portfolio piece for that work. You get the written case study, meeting templates, sample data from three sprints, and a few Python scripts that kept our notes in one place.
+1. **Student software team** (my own facilitation notes)
+2. **[ING](https://www.ing.com/Newsroom/News/INGs-agile-transformation.htm)** agile transformation
+3. **[Spotify](https://engineering.atspotify.com/2020/03/spotify-engineering-culture-part-1/)** squads and engineering culture
+4. **[UK Government Digital Service](https://www.gov.uk/government/organisations/government-digital-service)** iterative public services
 
-Read the full story in [`docs/case-study.md`](docs/case-study.md).
+Pick a case in the UI or with `--case` on the CLI. KPIs, sprints, impediments and retros update for that story.
 
-## Why it matters for software engineering
-
-Software engineering is not only implementation. Teams ship through process: backlog clarity, feedback loops, quality gates, and steady delivery. This project shows I can improve those factors with simple habits and light tooling, which is relevant for agile roles in industry (including environments with CI pipelines and interdisciplinary teams).
-
-## Repo layout
-
-```
-docs/case-study.md          before/after write up
-templates/                  working agreement, retro guide
-data/                       sample json from our sprints
-src/impediment_tracker.py   log and close blockers
-src/retro_board.py          mad/sad/glad notes
-src/sprint_summary.py       sprint report for reviews
-src/storage.py              shared json helpers
-```
-
-## Quick start
-
-Requires Python 3.10+ (stdlib only).
+## Godmode dashboard
 
 ```bash
-cd d:\CV-Projects\team-process-improvement
-
-python src/impediment_tracker.py list
-python src/impediment_tracker.py add "Waiting on API keys" --owner alex --impact high
-
-python src/retro_board.py list
-
-python src/sprint_summary.py overview
-python src/sprint_summary.py report 2
+python src/run_dashboard.py
 ```
 
-Edit files under `data/` directly if you prefer a spreadsheet style workflow.
+Browser opens at `http://127.0.0.1:8765/web/`. Use the tabs to switch cases. Your last choice is remembered in local storage.
 
-## Sample outcome
+## CLI (all cases)
 
-Sprint delivery improved over three iterations (see `data/sprints.json`). Planning time and open impediments at sprint end went down once we tracked blockers openly and acted on retro actions.
+```bash
+python src/sprint_summary.py --case ing-agile kpis
+python src/sprint_summary.py --case student-peer-review overview
+python src/impediment_tracker.py --case uk-gds list
+python src/retro_board.py --case spotify-squads list
+```
 
-## Related work
+Default case is `student-peer-review`.
 
-Other repos on my profile cover implementation (portfolio site, log analysis, peer correction tooling). This one is deliberately about **team process**, not feature code.
+## Why it matters
+
+Software engineering includes how teams deliver, not only code. This repo links coursework style agile practice to well known industry transformations. Useful for Scrum Master or agile working student applications.
+
+## Layout
+
+```
+web/                    dashboard (HTML + JS)
+data/cases/             one json bundle per case study
+docs/case-studies.md    index and notes on sources
+src/                    CLI tools and run_dashboard.py
+templates/              working agreement, retro guide
+```
+
+## Sources and honesty
+
+Industry KPIs are summarized from public material linked in each case json. Sprint and impediment tables are structured examples so every case works the same in the app. Say that clearly in interviews.
 
 ## License
 
-MIT. Use the templates in your own student or volunteer teams if helpful.
+MIT
