@@ -1,0 +1,126 @@
+{
+  "id": "student-peer-review",
+  "title": "Student software team",
+  "subtitle": "Master course peer review tool, lightweight Scrum",
+  "type": "personal",
+  "organization": "University software engineering project",
+  "region": "Germany",
+  "year": "2026",
+  "source_url": "",
+  "source_label": "Own facilitation notes from the project",
+  "context": "Five master students built a peer review tool. Code was mostly fine but coordination was messy. I focused on how the team worked, similar to a junior Scrum Master role.",
+  "before_summary": "Long planning, silent blockers in chat, tests skipped near deadlines.",
+  "after_summary": "Capped planning, daily standup, impediment log, one retro action per sprint.",
+  "kpis": [
+    {
+      "label": "Sprint completion (points)",
+      "before": "62%",
+      "after": "100%",
+      "unit": "sprint 1 vs sprint 3"
+    },
+    {
+      "label": "Planning duration",
+      "before": "150 min",
+      "after": "90 min",
+      "unit": "cap introduced"
+    },
+    {
+      "label": "Open impediments at sprint end",
+      "before": "2",
+      "after": "0",
+      "unit": "sprint 3"
+    },
+    {
+      "label": "Stories done per sprint",
+      "before": "4",
+      "after": "5",
+      "unit": "average trend"
+    }
+  ],
+  "changes": [
+    "Written working agreement",
+    "15 minute daily standup",
+    "Shared impediment log with owners",
+    "Retro with exactly one action item",
+    "Sprint summary before each demo"
+  ],
+  "sprints": [
+    {
+      "number": 1,
+      "goal": "Ship peer review module with basic tests",
+      "planned_points": 21,
+      "done_points": 13,
+      "stories_done": 4,
+      "open_impediments": 2,
+      "notes": "Planning too long, team tired before coding started"
+    },
+    {
+      "number": 2,
+      "goal": "Green CI and smaller backlog items",
+      "planned_points": 18,
+      "done_points": 17,
+      "stories_done": 6,
+      "open_impediments": 1,
+      "notes": "Retro action on planning time limit actually helped"
+    },
+    {
+      "number": 3,
+      "goal": "Demo ready build for course milestone",
+      "planned_points": 16,
+      "done_points": 16,
+      "stories_done": 5,
+      "open_impediments": 0,
+      "notes": "First sprint where review did not overrun"
+    }
+  ],
+  "impediments": [
+    {
+      "id": 1,
+      "title": "CI pipeline red for two days, nobody owned the fix",
+      "impact": "high",
+      "owner": "devops volunteer",
+      "status": "resolved",
+      "opened": "2026-02-03",
+      "resolved": "2026-02-05",
+      "notes": "came up in daily, we assigned one person"
+    },
+    {
+      "id": 2,
+      "title": "Acceptance criteria missing on three backlog items",
+      "impact": "medium",
+      "owner": "product owner",
+      "status": "resolved",
+      "opened": "2026-02-10",
+      "resolved": "2026-02-11",
+      "notes": "planning ran long because stories were vague"
+    },
+    {
+      "id": 3,
+      "title": "Reviewer unavailable before demo",
+      "impact": "medium",
+      "owner": "scrum facilitator",
+      "status": "resolved",
+      "opened": "2026-02-17",
+      "resolved": "2026-02-20",
+      "notes": "PR sat idle for 4 days"
+    }
+  ],
+  "retros": [
+    {
+      "sprint": "1",
+      "date": "2026-02-07",
+      "action": "Cap planning at 90 minutes and use a Definition of Done checklist",
+      "glad": ["Everyone showed up", "We wrote down task owners"],
+      "sad": ["We merged without running tests locally"],
+      "mad": ["Planning took 2.5 hours"]
+    },
+    {
+      "sprint": "2",
+      "date": "2026-02-21",
+      "action": "Split stories before planning if estimate is above 5 points",
+      "glad": ["Planning finished on time", "Impediment log helped spot CI issue early"],
+      "sad": ["One story was too big and rolled over"],
+      "mad": ["Slack replaced the daily some days"]
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "id": "spotify-squads",
+  "title": "Spotify engineering culture",
+  "subtitle": "Squads, tribes, chapters, and guilds for autonomous teams",
+  "type": "industry",
+  "organization": "Spotify",
+  "region": "Sweden / global",
+  "year": "2012-2016",
+  "source_url": "https://engineering.atspotify.com/2020/03/spotify-engineering-culture-part-1/",
+  "source_label": "Spotify engineering blog, Kniberg squad whitepaper",
+  "context": "Spotify grew fast. They documented an org model where small squads own features end to end, tribes align squads on a mission, chapters share craft skills, and guilds spread knowledge. Widely cited as a reference for agile at scale in software companies.",
+  "before_summary": "Growing pains, coordination overhead, releases that did not match learning speed.",
+  "after_summary": "Autonomous squads with alignment through tribes and light weight governance.",
+  "kpis": [
+    {
+      "label": "Team autonomy index",
+      "before": "low",
+      "after": "high",
+      "unit": "internal assessment narratives"
+    },
+    {
+      "label": "Release frequency (client apps)",
+      "before": "monthly batches",
+      "after": "continuous",
+      "unit": "engineering culture essays"
+    },
+    {
+      "label": "Cross team dependency conflicts",
+      "before": "frequent",
+      "after": "reduced via tribe alignment",
+      "unit": "qualitative case reports"
+    },
+    {
+      "label": "Engineering onboarding time",
+      "before": "long",
+      "after": "shorter with guild support",
+      "unit": "community of practice model"
+    }
+  ],
+  "changes": [
+    "Squads as mini startup units with PO and tech lead",
+    "Tribes group squads on related product missions",
+    "Chapters for craft standards across squads",
+    "Guilds as voluntary knowledge communities",
+    "Loosely coupled architecture to reduce handoffs"
+  ],
+  "sprints": [
+    {
+      "number": 1,
+      "goal": "Define squad boundaries for playlist experience",
+      "planned_points": 30,
+      "done_points": 24,
+      "stories_done": 11,
+      "open_impediments": 4,
+      "notes": "dependency on shared client platform"
+    },
+    {
+      "number": 2,
+      "goal": "Ship experiment toggle for recommendation squad",
+      "planned_points": 28,
+      "done_points": 27,
+      "stories_done": 12,
+      "open_impediments": 2,
+      "notes": "guild review on API conventions helped"
+    },
+    {
+      "number": 3,
+      "goal": "Reduce handoffs to infrastructure chapter",
+      "planned_points": 26,
+      "done_points": 26,
+      "stories_done": 13,
+      "open_impediments": 0,
+      "notes": "squad autonomy improved after architecture talk"
+    }
+  ],
+  "impediments": [
+    {
+      "id": 1,
+      "title": "Shared mobile client bottleneck",
+      "impact": "high",
+      "owner": "chapter lead",
+      "status": "resolved",
+      "opened": "2014-02-10",
+      "resolved": "2014-03-05",
+      "notes": "two squads needed same release train slot"
+    },
+    {
+      "id": 2,
+      "title": "Experiment platform quota limit",
+      "impact": "medium",
+      "owner": "squad PO",
+      "status": "resolved",
+      "opened": "2014-04-18",
+      "resolved": "2014-04-25",
+      "notes": "blocked A/B test for a week"
+    },
+    {
+      "id": 3,
+      "title": "Unclear tribe priority between squads",
+      "impact": "medium",
+      "owner": "tribe lead",
+      "status": "resolved",
+      "opened": "2014-06-02",
+      "resolved": "2014-06-09",
+      "notes": "resolved in tribe sync"
+    }
+  ],
+  "retros": [
+    {
+      "sprint": "1",
+      "date": "2014-03-20",
+      "action": "Flag cross squad dependencies in tribe sync not only retro",
+      "glad": ["Squad could ship a thin vertical slice"],
+      "sad": ["Chapter review came too late in sprint"],
+      "mad": ["Duplicate meetings with tribe and chapter"]
+    },
+    {
+      "sprint": "2",
+      "date": "2014-05-15",
+      "action": "Guild office hours for API design questions",
+      "glad": ["Faster decisions inside squad"],
+      "sad": ["Onboarding docs scattered"],
+      "mad": ["Release train stress at sprint end"]
+    }
+  ]
+}

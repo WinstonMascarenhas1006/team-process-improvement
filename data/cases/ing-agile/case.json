@@ -1,0 +1,126 @@
+{
+  "id": "ing-agile",
+  "title": "ING agile transformation",
+  "subtitle": "From traditional banking IT to tribes and squads at scale",
+  "type": "industry",
+  "organization": "ING",
+  "region": "Netherlands / global",
+  "year": "2015-2018",
+  "source_url": "https://www.ing.com/Newsroom/News/INGs-agile-transformation.htm",
+  "source_label": "ING Newsroom, McKinsey agile at scale interviews",
+  "context": "ING restructured technology and operations around agile squads inside tribes. Public reporting describes faster delivery and stronger customer focus after moving away from siloed waterfall style planning.",
+  "before_summary": "Department silos, long release cycles, slow response to digital competitors.",
+  "after_summary": "Cross functional squads, shorter feedback loops, measurable uplift in delivery cadence.",
+  "kpis": [
+    {
+      "label": "Employees in agile teams",
+      "before": "~0 at scale",
+      "after": "3,500+",
+      "unit": "2017 reporting"
+    },
+    {
+      "label": "Time to market (new features)",
+      "before": "~12 months",
+      "after": "~6 months",
+      "unit": "public case summaries"
+    },
+    {
+      "label": "Customer satisfaction (mobile)",
+      "before": "baseline",
+      "after": "+15 pts",
+      "unit": "reported uplift post change"
+    },
+    {
+      "label": "Employee engagement",
+      "before": "stagnant",
+      "after": "rising",
+      "unit": "internal surveys cited in case material"
+    }
+  ],
+  "changes": [
+    "Introduced tribes and squads instead of pure functional departments",
+    "Product owners embedded with engineers",
+    "Reduced management layers for faster decisions",
+    "Continuous delivery mindset on digital channels",
+    "Coaching for leaders on servant leadership"
+  ],
+  "sprints": [
+    {
+      "number": 1,
+      "goal": "Pilot squad model on mobile banking slice",
+      "planned_points": 40,
+      "done_points": 22,
+      "stories_done": 8,
+      "open_impediments": 5,
+      "notes": "Legacy approval gates still outside squad control"
+    },
+    {
+      "number": 2,
+      "goal": "Expand squads and align tribe backlog",
+      "planned_points": 38,
+      "done_points": 31,
+      "stories_done": 14,
+      "open_impediments": 3,
+      "notes": "Shared platform team became explicit dependency"
+    },
+    {
+      "number": 3,
+      "goal": "Steady release train on customer facing app",
+      "planned_points": 35,
+      "done_points": 34,
+      "stories_done": 16,
+      "open_impediments": 1,
+      "notes": "Impediments escalated to tribe lead within 48h rule"
+    }
+  ],
+  "impediments": [
+    {
+      "id": 1,
+      "title": "Compliance review outside squad calendar",
+      "impact": "high",
+      "owner": "tribe lead",
+      "status": "resolved",
+      "opened": "2016-03-01",
+      "resolved": "2016-04-10",
+      "notes": "blocked two releases"
+    },
+    {
+      "id": 2,
+      "title": "Shared test environment queue",
+      "impact": "high",
+      "owner": "platform squad",
+      "status": "resolved",
+      "opened": "2016-05-12",
+      "resolved": "2016-06-01",
+      "notes": "environment booking process added"
+    },
+    {
+      "id": 3,
+      "title": "Unclear priority between two tribes",
+      "impact": "medium",
+      "owner": "product owner",
+      "status": "resolved",
+      "opened": "2016-07-20",
+      "resolved": "2016-07-28",
+      "notes": "portfolio prioritization forum weekly"
+    }
+  ],
+  "retros": [
+    {
+      "sprint": "1",
+      "date": "2016-04-15",
+      "action": "Escalate external approvals in daily when idle 2 days",
+      "glad": ["Squad had real end to end ownership on UI slice"],
+      "sad": ["Still waiting on legacy ops handoffs"],
+      "mad": ["Status meetings duplicated agile ceremonies"]
+    },
+    {
+      "sprint": "2",
+      "date": "2016-06-22",
+      "action": "Single tribe backlog view for conflicting priorities",
+      "glad": ["Faster decisions when PO and engineers co located"],
+      "sad": ["Platform dependencies discovered late"],
+      "mad": ["Too many stakeholders in sprint review"]
+    }
+  ]
+}

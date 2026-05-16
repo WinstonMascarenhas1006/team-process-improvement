@@ -1,0 +1,126 @@
+{
+  "id": "uk-gds",
+  "title": "UK Government Digital Service",
+  "subtitle": "Agile delivery for public digital services (GOV.UK era)",
+  "type": "industry",
+  "organization": "UK Government Digital Service",
+  "region": "United Kingdom",
+  "year": "2011-2015",
+  "source_url": "https://www.gov.uk/government/organisations/government-digital-service",
+  "source_label": "GDS service manuals, public transformation reports",
+  "context": "GDS advocated user centered design, multidisciplinary teams, and iterative delivery instead of large waterfall procurements. Public write ups describe shipping alphas and betas in weeks, then improving from real user feedback.",
+  "before_summary": "Large waterfall contracts, late discovery of failure, poor citizen experience.",
+  "after_summary": "Small empowered teams, show working software early, continuous improvement on live services.",
+  "kpis": [
+    {
+      "label": "Time to public beta",
+      "before": "12-24 months",
+      "after": "8-12 weeks",
+      "unit": "reported on exemplar services"
+    },
+    {
+      "label": "Cost per transaction (exemplar)",
+      "before": "high",
+      "after": "up to 20x lower",
+      "unit": "digital by default narratives"
+    },
+    {
+      "label": "User satisfaction on redesigned services",
+      "before": "low",
+      "after": "rising",
+      "unit": "published service assessments"
+    },
+    {
+      "label": "Project failure rate (large IT)",
+      "before": "high",
+      "after": "reduced via iterative delivery",
+      "unit": "National Audit Office context"
+    }
+  ],
+  "changes": [
+    "Multidisciplinary teams: design, content, dev, policy together",
+    "Start with user needs not org charts",
+    "Alpha and beta phases before full scale",
+    "Show the thing every two weeks",
+    "Open source and reuse across departments"
+  ],
+  "sprints": [
+    {
+      "number": 1,
+      "goal": "Alpha prototype for unified publishing",
+      "planned_points": 25,
+      "done_points": 18,
+      "stories_done": 7,
+      "open_impediments": 4,
+      "notes": "security accreditation questions early"
+    },
+    {
+      "number": 2,
+      "goal": "Beta with real users on subset of journeys",
+      "planned_points": 24,
+      "done_points": 22,
+      "stories_done": 9,
+      "open_impediments": 2,
+      "notes": "content design in the same sprint as engineering"
+    },
+    {
+      "number": 3,
+      "goal": "Iterate from analytics and user research",
+      "planned_points": 22,
+      "done_points": 22,
+      "stories_done": 10,
+      "open_impediments": 0,
+      "notes": "retro actions tied to service metrics"
+    }
+  ],
+  "impediments": [
+    {
+      "id": 1,
+      "title": "Procurement rules blocked small vendor experiment",
+      "impact": "high",
+      "owner": "delivery manager",
+      "status": "resolved",
+      "opened": "2012-05-01",
+      "resolved": "2012-06-15",
+      "notes": "needed exemption for alpha phase"
+    },
+    {
+      "id": 2,
+      "title": "Accessibility audit backlog",
+      "impact": "medium",
+      "owner": "design lead",
+      "status": "resolved",
+      "opened": "2012-08-10",
+      "resolved": "2012-08-24",
+      "notes": "paired dev with content earlier"
+    },
+    {
+      "id": 3,
+      "title": "Hosting capacity for load test",
+      "impact": "medium",
+      "owner": "tech lead",
+      "status": "resolved",
+      "opened": "2012-10-03",
+      "resolved": "2012-10-12",
+      "notes": "shared platform slot scheduled"
+    }
+  ],
+  "retros": [
+    {
+      "sprint": "1",
+      "date": "2012-06-01",
+      "action": "User research slot every sprint, not only at discovery",
+      "glad": ["Policy and dev in the same room"],
+      "sad": ["Too much work in progress across streams"],
+      "mad": ["Late security questions"]
+    },
+    {
+      "sprint": "2",
+      "date": "2012-09-12",
+      "action": "Definition of done includes accessibility checklist",
+      "glad": ["Beta feedback loop within days"],
+      "sad": ["Content changes after dev finished"],
+      "mad": ["External reporting asked for waterfall dates"]
+    }
+  ]
+}

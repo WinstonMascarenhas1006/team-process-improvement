@@ -1,0 +1,28 @@
+{
+  "cases": [
+    {
+      "id": "student-peer-review",
+      "title": "Student software team",
+      "tag": "Personal",
+      "file": "student-peer-review/case.json"
+    },
+    {
+      "id": "ing-agile",
+      "title": "ING agile transformation",
+      "tag": "Banking",
+      "file": "ing-agile/case.json"
+    },
+    {
+      "id": "spotify-squads",
+      "title": "Spotify engineering culture",
+      "tag": "Tech",
+      "file": "spotify-squads/case.json"
+    },
+    {
+      "id": "uk-gds",
+      "title": "UK Government Digital Service",
+      "tag": "Public sector",
+      "file": "uk-gds/case.json"
+    }
+  ]
+}
