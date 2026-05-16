@@ -1,0 +1,31 @@
+{
+  "sprints": [
+    {
+      "number": 1,
+      "goal": "Ship peer review module with basic tests",
+      "planned_points": 21,
+      "done_points": 13,
+      "stories_done": 4,
+      "open_impediments": 2,
+      "notes": "Planning too long, team tired before coding started"
+    },
+    {
+      "number": 2,
+      "goal": "Green CI and smaller backlog items",
+      "planned_points": 18,
+      "done_points": 17,
+      "stories_done": 6,
+      "open_impediments": 1,
+      "notes": "Retro action on planning time limit actually helped"
+    },
+    {
+      "number": 3,
+      "goal": "Demo ready build for course milestone",
+      "planned_points": 16,
+      "done_points": 16,
+      "stories_done": 5,
+      "open_impediments": 0,
+      "notes": "First sprint where review did not overrun"
+    }
+  ]
+}
