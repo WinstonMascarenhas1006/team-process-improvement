@@ -8,6 +8,34 @@
   "year": "2012-2016",
   "source_url": "https://engineering.atspotify.com/2020/03/spotify-engineering-culture-part-1/",
   "source_label": "Spotify engineering blog, Kniberg squad whitepaper",
+  "trust": {
+    "headline_kpis": "verified_public",
+    "operational_tables": "illustrative"
+  },
+  "operational_note": "Culture and org metrics come from Spotify's published engineering material. Sprint rows are illustrative for the dashboard shape only.",
+  "evidence": [
+    {
+      "claim": "Squads act as small autonomous teams with end to end ownership",
+      "proof_level": "verified_public",
+      "source_title": "Spotify Engineering Culture (Part 1)",
+      "source_url": "https://engineering.atspotify.com/2020/03/spotify-engineering-culture-part-1/",
+      "excerpt": "A squad is a small, cross functional, self organising team."
+    },
+    {
+      "claim": "Tribes, chapters, and guilds align squads without heavy hierarchy",
+      "proof_level": "verified_public",
+      "source_title": "Spotify model (Kniberg)",
+      "source_url": "https://blog.crisp.se/wp-content/uploads/2012/11/SpotifyScaling.pdf",
+      "excerpt": "Squads are grouped into tribes; chapters and guilds handle craft alignment."
+    },
+    {
+      "claim": "Loosely coupled architecture reduces handoffs between teams",
+      "proof_level": "verified_public",
+      "source_title": "Spotify Engineering Culture (Part 1)",
+      "source_url": "https://engineering.atspotify.com/2020/03/spotify-engineering-culture-part-1/",
+      "excerpt": "Dependencies are minimized so squads can ship independently."
+    }
+  ],
   "context": "Spotify grew fast. They documented an org model where small squads own features end to end, tribes align squads on a mission, chapters share craft skills, and guilds spread knowledge. Widely cited as a reference for agile at scale in software companies.",
   "before_summary": "Growing pains, coordination overhead, releases that did not match learning speed.",
   "after_summary": "Autonomous squads with alignment through tribes and light weight governance.",

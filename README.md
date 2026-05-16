@@ -14,6 +14,19 @@ A small toolkit plus **interactive dashboard** for comparing **four** process im
 
 Pick a case in the UI or with `--case` on the CLI. KPIs, sprints, impediments and retros update for that story.
 
+## Is this real proof?
+
+**Honestly:** partly yes, partly no. The dashboard now labels each section.
+
+| What | Proof level |
+|------|-------------|
+| Student team KPIs (62% → 100% points) | **Primary** — math matches `data/cases/student-peer-review/case.json` |
+| Student repo + templates | **Artifacts** — links on the dashboard |
+| ING / Spotify / GDS headline KPIs | **Verified public** — quoted excerpts + McKinsey, ING, GDS, Spotify links |
+| Industry sprint & impediment tables | **Illustrative** — shaped for comparison, not leaked internal data |
+
+Use the **Compare all** tab for side by side before/after across cases. Read [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md) before interviews.
+
 ## Godmode dashboard
 
 ```bash

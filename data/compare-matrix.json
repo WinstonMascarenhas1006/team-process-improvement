@@ -1,0 +1,34 @@
+{
+  "title": "Cross case comparison (headline outcomes only)",
+  "note": "Each cell uses verified public or primary data from the case bundle. Operational sprint tables are not mixed into this matrix.",
+  "dimensions": [
+    {
+      "dimension": "Time to deliver customer value",
+      "student-peer-review": { "before": "62% of planned story points (sprint 1)", "after": "100% (sprint 3)", "proof": "primary" },
+      "ing-agile": { "before": "~12 months for new features", "after": "~6 months", "proof": "verified_public" },
+      "spotify-squads": { "before": "Monthly release batches", "after": "Continuous delivery on apps", "proof": "verified_public" },
+      "uk-gds": { "before": "12 to 24 months to beta", "after": "8 to 12 weeks on exemplar services", "proof": "verified_public" }
+    },
+    {
+      "dimension": "Organisation model",
+      "student-peer-review": { "before": "Ad hoc meetings", "after": "Scrum lite (daily, retro, impediment log)", "proof": "primary" },
+      "ing-agile": { "before": "Department silos", "after": "Tribes and squads", "proof": "verified_public" },
+      "spotify-squads": { "before": "Central coordination overhead", "after": "Squads, tribes, chapters, guilds", "proof": "verified_public" },
+      "uk-gds": { "before": "Waterfall procurement", "after": "Multidisciplinary product teams", "proof": "verified_public" }
+    },
+    {
+      "dimension": "Scale",
+      "student-peer-review": { "before": "5 students", "after": "Same team, stable process", "proof": "primary" },
+      "ing-agile": { "before": "Traditional IT at bank scale", "after": "3,500+ staff in agile teams", "proof": "verified_public" },
+      "spotify-squads": { "before": "Rapid headcount growth", "after": "100+ squads (reported era)", "proof": "verified_public" },
+      "uk-gds": { "before": "National IT programmes", "after": "GOV.UK style iterative services", "proof": "verified_public" }
+    },
+    {
+      "dimension": "Quality / risk",
+      "student-peer-review": { "before": "Tests skipped near deadlines", "after": "Definition of Done enforced", "proof": "primary" },
+      "ing-agile": { "before": "Late discovery in silos", "after": "Faster feedback on digital channels", "proof": "verified_public" },
+      "spotify-squads": { "before": "Handoffs between teams", "after": "Squad owns vertical slice", "proof": "verified_public" },
+      "uk-gds": { "before": "High failure rate on big IT", "after": "Alpha/beta before full spend", "proof": "verified_public" }
+    }
+  ]
+}

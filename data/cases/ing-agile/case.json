@@ -8,6 +8,34 @@
   "year": "2015-2018",
   "source_url": "https://www.ing.com/Newsroom/News/INGs-agile-transformation.htm",
   "source_label": "ING Newsroom, McKinsey agile at scale interviews",
+  "trust": {
+    "headline_kpis": "verified_public",
+    "operational_tables": "illustrative"
+  },
+  "operational_note": "KPIs below are quoted or paraphrased from public articles. Sprint and impediment tables show typical patterns, not ING internal exports.",
+  "evidence": [
+    {
+      "claim": "More than 3,500 employees work in agile teams",
+      "proof_level": "verified_public",
+      "source_title": "McKinsey, ING's agile transformation",
+      "source_url": "https://www.mckinsey.com/industries/financial-services/our-insights/ings-agile-transformation",
+      "excerpt": "More than 3,500 employees are now working in agile teams."
+    },
+    {
+      "claim": "Time to market for new product features cut in half",
+      "proof_level": "verified_public",
+      "source_title": "McKinsey, ING's agile transformation",
+      "source_url": "https://www.mckinsey.com/industries/financial-services/our-insights/ings-agile-transformation",
+      "excerpt": "Time to market for new product features has been cut in half."
+    },
+    {
+      "claim": "Bank moved from siloed departments to tribes and squads",
+      "proof_level": "verified_public",
+      "source_title": "ING Newsroom",
+      "source_url": "https://www.ing.com/Newsroom/News/INGs-agile-transformation.htm",
+      "excerpt": "ING describes an agile way of working with multidisciplinary squads."
+    }
+  ],
   "context": "ING restructured technology and operations around agile squads inside tribes. Public reporting describes faster delivery and stronger customer focus after moving away from siloed waterfall style planning.",
   "before_summary": "Department silos, long release cycles, slow response to digital competitors.",
   "after_summary": "Cross functional squads, shorter feedback loops, measurable uplift in delivery cadence.",
@@ -16,25 +44,33 @@
       "label": "Employees in agile teams",
       "before": "~0 at scale",
       "after": "3,500+",
-      "unit": "2017 reporting"
+      "unit": "2017 reporting",
+      "proof_level": "verified_public",
+      "source_url": "https://www.mckinsey.com/industries/financial-services/our-insights/ings-agile-transformation"
     },
     {
       "label": "Time to market (new features)",
       "before": "~12 months",
       "after": "~6 months",
-      "unit": "public case summaries"
+      "unit": "public case summaries",
+      "proof_level": "verified_public",
+      "source_url": "https://www.mckinsey.com/industries/financial-services/our-insights/ings-agile-transformation"
     },
     {
       "label": "Customer satisfaction (mobile)",
       "before": "baseline",
       "after": "+15 pts",
-      "unit": "reported uplift post change"
+      "unit": "reported uplift post change",
+      "proof_level": "verified_public",
+      "source_url": "https://www.ing.com/Newsroom/News/INGs-agile-transformation.htm"
     },
     {
       "label": "Employee engagement",
       "before": "stagnant",
       "after": "rising",
-      "unit": "internal surveys cited in case material"
+      "unit": "internal surveys cited in case material",
+      "proof_level": "verified_public",
+      "source_url": "https://www.mckinsey.com/industries/financial-services/our-insights/ings-agile-transformation"
     }
   ],
   "changes": [

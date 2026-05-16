@@ -289,6 +289,41 @@ body.app-body {
   padding: 1.5rem 0;
 }
 
+.evidence-quote {
+  margin: 0;
+  padding: 0.65rem 0.85rem;
+  border-left: 3px solid var(--accent-teal);
+  background: rgba(15, 118, 110, 0.06);
+  font-size: 0.9rem;
+  color: #2c3e4a;
+}
+
+.compare-table th {
+  font-size: 0.78rem;
+  vertical-align: top;
+  background: #f7f3ec;
+}
+
+.compare-table td {
+  font-size: 0.82rem;
+  vertical-align: top;
+  min-width: 140px;
+}
+
+.compare-before {
+  font-weight: 600;
+}
+
+.compare-after {
+  font-weight: 600;
+}
+
+.compare-arrow {
+  color: #8a9aa6;
+  font-size: 0.75rem;
+  margin: 0.15rem 0;
+}
+
 @media (max-width: 768px) {
   .chart-wrap {
     overflow-x: auto;

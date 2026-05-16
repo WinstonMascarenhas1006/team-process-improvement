@@ -8,6 +8,51 @@
   "year": "2026",
   "source_url": "",
   "source_label": "Own facilitation notes from the project",
+  "trust": {
+    "headline_kpis": "primary",
+    "operational_tables": "primary"
+  },
+  "operational_note": "Sprint and impediment rows are stored in this repository. Numbers are consistent with the KPI cards (13/21 then 16/16 points).",
+  "artifacts": [
+    {
+      "label": "Peer review application repo",
+      "url": "https://github.com/WinstonMascarenhas1006/control-engineering-peer-correction",
+      "type": "repository"
+    },
+    {
+      "label": "Working agreement used by the team",
+      "url": "https://github.com/WinstonMascarenhas1006/team-process-improvement/blob/main/templates/working_agreement.md",
+      "type": "document"
+    },
+    {
+      "label": "Raw sprint json in this project",
+      "url": "https://github.com/WinstonMascarenhas1006/team-process-improvement/blob/main/data/cases/student-peer-review/case.json",
+      "type": "dataset"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "Sprint throughput improved from 62% to 100% of planned points",
+      "proof_level": "primary",
+      "source_title": "Sprint table in case.json",
+      "source_url": "https://github.com/WinstonMascarenhas1006/team-process-improvement/blob/main/data/cases/student-peer-review/case.json",
+      "excerpt": "Sprint 1: 13/21 points. Sprint 3: 16/16 points."
+    },
+    {
+      "claim": "Planning time capped at 90 minutes after retro action",
+      "proof_level": "primary",
+      "source_title": "Retro session 1 action item",
+      "source_url": "https://github.com/WinstonMascarenhas1006/team-process-improvement/blob/main/data/cases/student-peer-review/case.json",
+      "excerpt": "Retro sprint 1 action: Cap planning at 90 minutes and use a Definition of Done checklist."
+    },
+    {
+      "claim": "Facilitation role separate from main development",
+      "proof_level": "primary",
+      "source_title": "Project README and case study",
+      "source_url": "https://github.com/WinstonMascarenhas1006/team-process-improvement/blob/main/docs/case-study.md",
+      "excerpt": "Author focused on team process; implementation continued in the peer review repo."
+    }
+  ],
   "context": "Five master students built a peer review tool. Code was mostly fine but coordination was messy. I focused on how the team worked, similar to a junior Scrum Master role.",
   "before_summary": "Long planning, silent blockers in chat, tests skipped near deadlines.",
   "after_summary": "Capped planning, daily standup, impediment log, one retro action per sprint.",
@@ -16,25 +61,29 @@
       "label": "Sprint completion (points)",
       "before": "62%",
       "after": "100%",
-      "unit": "sprint 1 vs sprint 3"
+      "unit": "sprint 1 vs sprint 3",
+      "proof_level": "primary"
     },
     {
       "label": "Planning duration",
       "before": "150 min",
       "after": "90 min",
-      "unit": "cap introduced"
+      "unit": "cap introduced",
+      "proof_level": "primary"
     },
     {
       "label": "Open impediments at sprint end",
       "before": "2",
       "after": "0",
-      "unit": "sprint 3"
+      "unit": "sprint 3",
+      "proof_level": "primary"
     },
     {
       "label": "Stories done per sprint",
       "before": "4",
       "after": "5",
-      "unit": "average trend"
+      "unit": "average trend",
+      "proof_level": "primary"
     }
   ],
   "changes": [

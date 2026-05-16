@@ -34,10 +34,11 @@
           <div class="row align-items-center">
             <div class="col">
               <h1 class="page-title">Process improvement dashboard</h1>
-              <p class="text-secondary mb-0">Compare four real world style case studies. Pick one tab below.</p>
+              <p class="text-secondary mb-0">Evidence linked case studies with side by side comparison. Not random numbers.</p>
             </div>
           </div>
           <ul class="nav nav-pills case-nav mt-4" id="caseTabs" role="tablist"></ul>
+          <p class="mt-2 mb-0"><a href="../docs/METHODOLOGY.md" class="small" target="_blank">Proof levels explained</a></p>
         </div>
       </div>
 
@@ -47,11 +48,29 @@
             Could not load data. Run <code>python src/run_dashboard.py</code> from the repo root.
           </div>
 
+          <div id="compareView" class="hidden">
+            <div class="card mb-4">
+              <div class="card-header">
+                <h3 class="card-title"><i class="ti ti-columns"></i> Side by side comparison</h3>
+                <span class="badge bg-green-lt">headline proof only</span>
+              </div>
+              <div class="card-body p-0">
+                <p class="text-secondary px-3 pt-3 small mb-0" id="compareNote"></p>
+                <div class="table-responsive">
+                  <table class="table table-vcenter table-bordered compare-table mb-0" id="compareTable"></table>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div id="main" class="hidden">
+            <div id="trustBanner" class="alert mb-3 hidden"></div>
             <div class="card card-hero mb-4">
               <div class="card-body">
                 <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
                   <span class="badge badge-outline text-blue" id="caseTag"></span>
+                  <span class="badge bg-green-lt hidden" id="trustKpiBadge"></span>
+                  <span class="badge bg-yellow-lt hidden" id="trustOpsBadge"></span>
                   <span class="text-secondary small" id="caseMeta"></span>
                 </div>
                 <h2 class="case-title" id="caseTitle"></h2>
@@ -59,6 +78,20 @@
                 <p class="mb-2" id="caseContext"></p>
                 <p class="text-secondary small mb-0" id="caseSource"></p>
               </div>
+            </div>
+
+            <div class="card mb-4" id="evidenceCard">
+              <div class="card-header">
+                <h3 class="card-title"><i class="ti ti-certificate"></i> Evidence and sources</h3>
+              </div>
+              <div class="card-body" id="evidenceList"></div>
+            </div>
+
+            <div class="card mb-4 hidden" id="artifactsCard">
+              <div class="card-header">
+                <h3 class="card-title"><i class="ti ti-paperclip"></i> Artifacts you can verify</h3>
+              </div>
+              <div class="list-group list-group-flush" id="artifactList"></div>
             </div>
 
             <div class="row row-deck row-cards mb-4">
@@ -94,7 +127,7 @@
                 <div class="card h-100">
                   <div class="card-header">
                     <h3 class="card-title">Sprint delivery</h3>
-                    <span class="badge bg-azure-lt">planned vs done</span>
+                    <span class="badge bg-azure-lt" id="sprintOpsBadge">planned vs done</span>
                   </div>
                   <div class="card-body">
                     <div class="chart-wrap" id="sprintChart"></div>

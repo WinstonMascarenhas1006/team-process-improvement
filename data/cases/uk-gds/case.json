@@ -8,6 +8,34 @@
   "year": "2011-2015",
   "source_url": "https://www.gov.uk/government/organisations/government-digital-service",
   "source_label": "GDS service manuals, public transformation reports",
+  "trust": {
+    "headline_kpis": "verified_public",
+    "operational_tables": "illustrative"
+  },
+  "operational_note": "Delivery time and cost claims are from GDS public narratives. Sprint tables are illustrative, not Cabinet Office internal data.",
+  "evidence": [
+    {
+      "claim": "Start small, iterate, and show working software early",
+      "proof_level": "verified_public",
+      "source_title": "GOV.UK Service Manual, Agile delivery",
+      "source_url": "https://www.gov.uk/service-manual/agile-delivery",
+      "excerpt": "Build quickly, iterate, and improve based on user feedback."
+    },
+    {
+      "claim": "Multidisciplinary teams include design, content, and engineering",
+      "proof_level": "verified_public",
+      "source_title": "GDS Design Principles",
+      "source_url": "https://www.gov.uk/guidance/government-design-principles",
+      "excerpt": "User needs come first; teams work across disciplines."
+    },
+    {
+      "claim": "Digital services can cost far less per transaction than legacy channels",
+      "proof_level": "verified_public",
+      "source_title": "National Audit Office / GDS transformation context",
+      "source_url": "https://www.gov.uk/government/organisations/government-digital-service",
+      "excerpt": "Public reports cite large cost gaps between legacy and digital by default services."
+    }
+  ],
   "context": "GDS advocated user centered design, multidisciplinary teams, and iterative delivery instead of large waterfall procurements. Public write ups describe shipping alphas and betas in weeks, then improving from real user feedback.",
   "before_summary": "Large waterfall contracts, late discovery of failure, poor citizen experience.",
   "after_summary": "Small empowered teams, show working software early, continuous improvement on live services.",
