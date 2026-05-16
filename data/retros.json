@@ -1,0 +1,34 @@
+{
+  "sessions": [
+    {
+      "sprint": "1",
+      "date": "2026-02-07",
+      "mad": [
+        "Planning took 2.5 hours"
+      ],
+      "sad": [
+        "We merged without running tests locally"
+      ],
+      "glad": [
+        "Everyone showed up",
+        "We finally wrote down who owns which task"
+      ],
+      "action": "Cap planning at 90 minutes and use a clear Definition of Done checklist"
+    },
+    {
+      "sprint": "2",
+      "date": "2026-02-21",
+      "mad": [
+        "Slack threads replaced the daily standup some days"
+      ],
+      "sad": [
+        "One story was too big and rolled over"
+      ],
+      "glad": [
+        "Planning finished on time",
+        "Impediment log helped us spot the CI issue early"
+      ],
+      "action": "Split stories before planning if estimate is above 5 points"
+    }
+  ]
+}
